@@ -1,0 +1,32 @@
+apply plugin: 'kotlin'
+
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+}
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
+
+    // other
+    implementation domainDependencies.kotlin
+    // reactive
+    implementation domainDependencies.rxAndroid
+    implementation domainDependencies.rxJava
+    // android architecture component
+    implementation domainDependencies.pagingRuntime
+    implementation domainDependencies.pagingRxJava
+    // test
+    testImplementation domainTestDependencies.junit
+    testImplementation domainTestDependencies.mockito
+}
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+}
