@@ -6,37 +6,30 @@ package ir.hosseinabbasi.domain.entity
 sealed class Entity {
 
     data class Agent(
-        val agentLocalId: Long?,
         val id: Int,
         val name: String,
         val imageUrl: String,
         val status: String,
         val optimisedForMobile: Boolean,
         val bookingNumber: String,
-        val type: String,
-        val flightId: Long?
+        val type: String
     ) : Entity()
 
     data class BookingDetailsLink(
-        val bookingDetailsLinkLocalId: Long?,
         val uri: String,
         val body: String,
-        val method: String,
-        val itineraryId: Long?
+        val method: String
     ) : Entity()
 
     data class Carrier(
-        val carrierLocalId: Long?,
         val id: Int,
         val code: String,
         val name: String,
         val imageUrl: String,
-        val displayCode: String,
-        val flightId: Long?
+        val displayCode: String
     ) : Entity()
 
     data class Currency(
-        val currencyLocalId: Long?,
         val code: String,
         val symbol: String,
         val thousandsSeparator: String,
@@ -44,28 +37,22 @@ sealed class Entity {
         val symbolOnLeft: Boolean,
         val spaceBetweenAmountAndSymbol: Boolean,
         val roundingCoefficient: Int,
-        val decimalDigits: Int,
-        val flightId: Long?
+        val decimalDigits: Int
     ) : Entity()
 
     data class FlightNumber(
-        val flightNumberLocalId: Long?,
         val flightNumber: String,
-        val carrierId: Int,
-        val legId: Long?
+        val carrierId: Int
     ) : Entity()
 
     data class Itinerary(
-        val itineraryLocalId: Long?,
         val outboundLegId: String,
         val inboundLegId: String,
-        val pricingOptions: List<PricingOption>?,
-        val bookingDetailsLink: BookingDetailsLink?,
-        val flightId: Long?
+        val pricingOptions: List<PricingOption>,
+        val bookingDetailsLink: BookingDetailsLink
     ) : Entity()
 
     data class Leg(
-        val legLocalId: Long?,
         val id: String,
         val segmentIds: List<Int>,
         val originStation: Int,
@@ -78,31 +65,25 @@ sealed class Entity {
         val carriers: List<Int>,
         val operatingCarriers: List<Int>,
         val directionality: String,
-        val flightNumbers: List<FlightNumber>?,
-        val flightId: Long?
+        val flightNumbers: List<FlightNumber>
     ) : Entity()
 
     data class Place(
-        val placeLocalId: Long?,
         val id: Int,
         val parentId: Int,
         val code: String,
         val type: String,
-        val name: String,
-        val flightId: Long?
+        val name: String
     ) : Entity()
 
     data class PricingOption(
-        val pricingOptionLocalId: Long?,
         val agents: List<Int>,
         val quoteAgeInMinutes: Int,
         val price: Double,
-        val deepLinkUrl: String,
-        val itineraryId: Long?
+        val deepLinkUrl: String
     ) : Entity()
 
     data class Query(
-        val queryLocalId: Long?,
         val country: String,
         val currency: String,
         val locale: String,
@@ -119,7 +100,6 @@ sealed class Entity {
     ) : Entity()
 
     data class Segment(
-        val segmentLocalId: Long?,
         val id: Int,
         val originStation: Int,
         val destinationStation: Int,
@@ -130,8 +110,7 @@ sealed class Entity {
         val duration: Int,
         val flightNumber: String,
         val journeyMode: String,
-        val directionality: String,
-        val flightId: Long?
+        val directionality: String
     ) : Entity()
 
     data class Flight(
@@ -139,12 +118,12 @@ sealed class Entity {
         val sessionKey: String,
         val query: Entity.Query,
         val status: String,
-        val itineraries: List<Itinerary>?,
-        val legs: List<Leg>?,
-        val segments: List<Segment>?,
-        val carriers: List<Carrier>?,
-        val agents: List<Agent>?,
-        val places: List<Place>?,
-        val currencies: List<Currency>?
-    )
+        val itineraries: List<Itinerary>,
+        val legs: List<Leg>,
+        val segments: List<Segment>,
+        val carriers: List<Carrier>,
+        val agents: List<Agent>,
+        val places: List<Place>,
+        val currencies: List<Currency>
+    ) : Entity()
 }

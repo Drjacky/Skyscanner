@@ -11,6 +11,9 @@ import javax.inject.Singleton
 /**
  * Created by Dr.jacky on 11/4/2018.
  */
+/**
+ * Database module
+ */
 @Module
 class DbModule {
 
@@ -22,5 +25,5 @@ class DbModule {
 
     @Singleton
     @Provides
-    fun provideAlbumDao(myDatabase: MyDatabase) = myDatabase.flightDao()
+    fun provideFlightDao(myDatabase: MyDatabase) = myDatabase.flightDao()
 }

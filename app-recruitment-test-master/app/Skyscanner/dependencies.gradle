@@ -40,7 +40,8 @@ ext {
             rxJava       : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             rxAndroid    : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             pagingRuntime: "androidx.paging:paging-runtime:$pagingVersion",
-            pagingRxJava : "androidx.paging:paging-rxjava2:$pagingVersion"
+            pagingRxJava : "androidx.paging:paging-rxjava2:$pagingVersion",
+            retrofitRxJava2Adapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version",
     ]
     domainTestDependencies = [
             kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",

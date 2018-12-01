@@ -7,7 +7,7 @@ import ir.hosseinabbasi.domain.entity.Entity
  * Created by Dr.jacky on 11/4/2018.
  */
 /**
- * Extension class to map album dto to album entity
+ * Extension class to map flight dto to flight entity
  */
 fun FlightApi.Dto.Flight.map() = Entity.Flight(
     flightLocalId = null,
@@ -36,34 +36,27 @@ fun FlightApi.Dto.Query.map() = Entity.Query(
     inboundDate = inboundDate,
     locationSchema = locationSchema,
     cabinClass = cabinClass,
-    groupPricing = groupPricing,
-    queryLocalId = null
+    groupPricing = groupPricing
 )
 
 fun FlightApi.Dto.Itinerary.map() = Entity.Itinerary(
     outboundLegId = outboundLegId,
     inboundLegId = inboundLegId,
     pricingOptions = pricingOptions.map { it.map() },
-    bookingDetailsLink = bookingDetailsLink.map(),
-    itineraryLocalId = null,
-    flightId = null
+    bookingDetailsLink = bookingDetailsLink.map()
 )
 
 fun FlightApi.Dto.PricingOption.map() = Entity.PricingOption(
     agents = agents,
     deepLinkUrl = deepLinkUrl,
     price = price,
-    quoteAgeInMinutes = quoteAgeInMinutes,
-    pricingOptionLocalId = null,
-    itineraryId = null
+    quoteAgeInMinutes = quoteAgeInMinutes
 )
 
 fun FlightApi.Dto.BookingDetailsLink.map() = Entity.BookingDetailsLink(
     uri = uri,
     body = body,
-    method = method,
-    bookingDetailsLinkLocalId = null,
-    itineraryId = null
+    method = method
 )
 
 fun FlightApi.Dto.Leg.map() = Entity.Leg(
@@ -79,16 +72,12 @@ fun FlightApi.Dto.Leg.map() = Entity.Leg(
     carriers = carriers,
     operatingCarriers = operatingCarriers,
     directionality = directionality,
-    flightNumbers = flightNumbers.map { it.map() },
-    legLocalId = null,
-    flightId = null
+    flightNumbers = flightNumbers.map { it.map() }
 )
 
 fun FlightApi.Dto.FlightNumber.map() = Entity.FlightNumber(
     flightNumber = flightNumber,
-    carrierId = carrierId,
-    flightNumberLocalId = null,
-    legId = null
+    carrierId = carrierId
 )
 
 fun FlightApi.Dto.Segment.map() = Entity.Segment(
@@ -102,9 +91,7 @@ fun FlightApi.Dto.Segment.map() = Entity.Segment(
     duration = duration,
     flightNumber = flightNumber,
     journeyMode = journeyMode,
-    directionality = directionality,
-    segmentLocalId = null,
-    flightId = null
+    directionality = directionality
 )
 
 fun FlightApi.Dto.Carrier.map() = Entity.Carrier(
@@ -112,9 +99,7 @@ fun FlightApi.Dto.Carrier.map() = Entity.Carrier(
     code = code,
     name = name,
     imageUrl = imageUrl,
-    displayCode = displayCode,
-    carrierLocalId = null,
-    flightId = null
+    displayCode = displayCode
 )
 
 fun FlightApi.Dto.Agent.map() = Entity.Agent(
@@ -124,9 +109,7 @@ fun FlightApi.Dto.Agent.map() = Entity.Agent(
     status = status,
     optimisedForMobile = optimisedForMobile,
     bookingNumber = bookingNumber,
-    type = type,
-    agentLocalId = null,
-    flightId = null
+    type = type
 )
 
 fun FlightApi.Dto.Place.map() = Entity.Place(
@@ -134,9 +117,7 @@ fun FlightApi.Dto.Place.map() = Entity.Place(
     parentId = parentId,
     code = code,
     type = type,
-    name = name,
-    placeLocalId = null,
-    flightId = null
+    name = name
 )
 
 fun FlightApi.Dto.Currency.map() = Entity.Currency(
@@ -147,7 +128,5 @@ fun FlightApi.Dto.Currency.map() = Entity.Currency(
     symbolOnLeft = symbolOnLeft,
     spaceBetweenAmountAndSymbol = spaceBetweenAmountAndSymbol,
     roundingCoefficient = roundingCoefficient,
-    decimalDigits = decimalDigits,
-    currencyLocalId = null,
-    flightId = null
+    decimalDigits = decimalDigits
 )

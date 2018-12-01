@@ -17,10 +17,10 @@ interface FlightDatabaseDataSource : DataSource {
      *
      * @return a Flowable that emits flights
      */
-    fun getFlights(): Flowable<Entity.Flight>
+    fun getFlights(): Flowable<List<Entity.Flight>>
 
     /**
      * Persist all of flights in local database
      */
-    fun replace(flight: Entity.Flight)
+    fun persist(flight: List<Entity.Flight>)
 }

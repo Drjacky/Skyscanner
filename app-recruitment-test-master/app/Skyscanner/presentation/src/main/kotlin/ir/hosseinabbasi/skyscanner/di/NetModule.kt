@@ -3,6 +3,7 @@ package ir.hosseinabbasi.skyscanner.di
 import dagger.Module
 import dagger.Provides
 import ir.hosseinabbasi.data.api.FlightApi
+import ir.hosseinabbasi.data.common.NetworkUtils
 import ir.hosseinabbasi.skyscanner.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,7 +25,7 @@ class NetModule {
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient) =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL + "/" + BuildConfig.API_VERSION)
+            .baseUrl(BuildConfig.BASE_URL + "/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
@@ -41,6 +42,14 @@ class NetModule {
         okHttpClientBuilder: OkHttpClient.Builder,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
+        okHttpClientBuilder.addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+                .addHeader("X-Forwarded-For", NetworkUtils.getIpAddress())
+                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                .addHeader("Accept", "application/json")
+                .build()
+            chain.proceed(request)
+        }
         if (BuildConfig.DEBUG) {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpClientBuilder.addNetworkInterceptor(httpLoggingInterceptor)

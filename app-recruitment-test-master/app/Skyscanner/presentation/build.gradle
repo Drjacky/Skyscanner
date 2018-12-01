@@ -25,7 +25,7 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"http://partners.api.skyscanner.net/apiservices\"")
-            buildConfigField "String", "API_VERSION", "\"v1.0\""
+            buildConfigField("String", "API_KEY", "\"ss630745725358065467897349852985\"")
         }
         debug {
             minifyEnabled false
@@ -35,7 +35,7 @@ android {
             versionNameSuffix "-DEBUG"
             signingConfig android.signingConfigs.debug
             buildConfigField("String", "BASE_URL", "\"http://partners.api.skyscanner.net/apiservices\"")
-            buildConfigField "String", "API_VERSION", "\"v1.0\""
+            buildConfigField("String", "API_KEY", "\"ss630745725358065467897349852985\"")
         }
     }
     compileOptions {

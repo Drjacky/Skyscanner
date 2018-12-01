@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/homeFragment"
-            android:name="ir.hosseinabbasi.skyscanner.ui.home.FlightsFragment"
-            tools:layout="@layout/fragment_flights" />
+            android:name="ir.hosseinabbasi.skyscanner.ui.flight.FlightFragment"
+            tools:layout="@layout/fragment_flights"/>
 
 </navigation>

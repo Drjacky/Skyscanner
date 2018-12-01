@@ -16,14 +16,14 @@ class FlightDatabaseDataSourceImpl(private val flightDao: FlightDao) : FlightDat
     /**
      * Get all of flights from database implementation
      */
-    override fun getFlights(): Flowable<Entity.Flight> {
-        return flightDao.selectAll().map { it.map() }
+    override fun getFlights(): Flowable<List<Entity.Flight>> {
+        return flightDao.selectAll().map { it -> it.map { it.map() } }
     }
 
     /**
      * Persist all of flights in local database implementation
      */
-    override fun replace(flight: Entity.Flight) {
-        return flightDao.replace(flight)
+    override fun persist(flight: List<Entity.Flight>) {
+        return flightDao.persist(flight)
     }
 }

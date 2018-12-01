@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.adapter.rxjava2.Result
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created by Dr.jacky on 11/1/2018.
@@ -21,7 +19,7 @@ interface FlightApi {
      * The Live Pricing Service Session must be created before any pricing data can be obtained.
      */
     @FormUrlEncoded
-    @POST("pricing")
+    @POST("pricing/v1.0")
     fun createSession(
         @Field("country") country: String = COUNTRY,
         @Field("currency") currency: String = CURRENCY_USD,
@@ -42,7 +40,8 @@ interface FlightApi {
      *
      * @return a Single that emits flights
      */
-    fun getFlights(): Single<Dto.Flight>
+    @GET
+    fun getFlights(@Url url: String): Single<List<Dto.Flight>>
 
     /**
      * Flight DTO
@@ -255,7 +254,6 @@ interface FlightApi {
             val currencies: List<Currency>
         )
     }
-
 }
 
 /**

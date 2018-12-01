@@ -12,24 +12,17 @@ import ir.hosseinabbasi.domain.entity.Entity
  * Created by Dr.jacky on 11/1/2018.
  */
 @Dao
-interface FlightDao : BaseDao<FlightData.Result> {
-
-    /*@Query("SELECT * FROM flight ORDER BY id")
-    override fun selectAll(): Flowable<List<FlightData.Flight>>*/
+interface FlightDao : BaseDao<FlightData.Flight> {
 
     @Query("SELECT * FROM flight ORDER BY flight_local_id")
-    override fun selectAll(): Flowable<FlightData.Result>
+    override fun selectAll(): Flowable<List<FlightData.Flight>>
 
     @Query("SELECT * FROM flight WHERE flight_local_id = :id")
-    override fun select(id: Long): Flowable<FlightData.Result>
+    override fun select(id: Long): Flowable<FlightData.Flight>
 
     @Transaction
-    fun replace(flight: Entity.Flight) {
-        insert(flight.map())
-        insert(flight.agents.ma)
-
-
-
+    fun persist(flight: List<Entity.Flight>) {
+        insert(flight.map { it.map() })
     }
 
     @Query("DELETE FROM flight")

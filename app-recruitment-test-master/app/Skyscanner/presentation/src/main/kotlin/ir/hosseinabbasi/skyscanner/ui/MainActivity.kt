@@ -1,7 +1,6 @@
 package ir.hosseinabbasi.skyscanner.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import ir.hosseinabbasi.skyscanner.R
 import ir.hosseinabbasi.skyscanner.ui.base.BaseActivity
 

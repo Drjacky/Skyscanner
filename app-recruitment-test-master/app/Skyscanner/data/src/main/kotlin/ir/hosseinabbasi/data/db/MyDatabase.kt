@@ -14,14 +14,7 @@ import ir.hosseinabbasi.data.db.flight.FlightData
  */
 @Database(
     entities = [
-        FlightData.Flight::class,
-        FlightData.Itinerary::class,
-        FlightData.Leg::class,
-        FlightData.Segment::class,
-        FlightData.Carrier::class,
-        FlightData.Agent::class,
-        FlightData.Place::class,
-        FlightData.Currency::class
+        FlightData.Flight::class
     ], version = 1, exportSchema = false
 )
 @TypeConverters(DataTypeConverter::class)

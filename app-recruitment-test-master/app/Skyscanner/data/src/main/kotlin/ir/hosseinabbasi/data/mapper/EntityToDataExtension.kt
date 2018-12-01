@@ -13,7 +13,14 @@ fun Entity.Flight.map() = FlightData.Flight(
     flightLocalId = flightLocalId,
     sessionKey = sessionKey,
     query = query.map(),
-    status = status
+    status = status,
+    itineraries = itineraries.map { it.map() },
+    legs = legs.map { it.map() },
+    segments = segments.map { it.map() },
+    carriers = carriers.map { it.map() },
+    agents = agents.map { it.map() },
+    places = places.map { it.map() },
+    currencies = currencies.map { it.map() }
 )
 
 /*fun Entity.Flight.map() = FlightData.Result(
@@ -40,34 +47,27 @@ fun Entity.Query.map() = FlightData.Query(
     inboundDate = inboundDate,
     locationSchema = locationSchema,
     cabinClass = cabinClass,
-    groupPricing = groupPricing,
-    queryLocalId = queryLocalId
+    groupPricing = groupPricing
 )
 
 fun Entity.Itinerary.map() = FlightData.Itinerary(
     outboundLegId = outboundLegId,
     inboundLegId = inboundLegId,
-    //pricingOptions = pricingOptions.map { it.map() },
-    //bookingDetailsLink = bookingDetailsLink.map(),
-    itineraryLocalId = itineraryLocalId,
-    flightLocalId = flightId
+    bookingDetailsLink = bookingDetailsLink.map(),
+    pricingOption = pricingOptions.map { it.map() }
 )
 
 fun Entity.PricingOption.map() = FlightData.PricingOption(
     agents = agents,
     deepLinkUrl = deepLinkUrl,
     price = price,
-    quoteAgeInMinutes = quoteAgeInMinutes,
-    pricingOptionLocalId = pricingOptionLocalId,
-    itineraryLocalId = itineraryId
+    quoteAgeInMinutes = quoteAgeInMinutes
 )
 
 fun Entity.BookingDetailsLink.map() = FlightData.BookingDetailsLink(
     uri = uri,
     body = body,
-    method = method,
-    bookingDetailsLinkLocalId = bookingDetailsLinkLocalId,
-    itineraryLocalId = itineraryId
+    method = method
 )
 
 fun Entity.Leg.map() = FlightData.Leg(
@@ -83,16 +83,12 @@ fun Entity.Leg.map() = FlightData.Leg(
     carriers = carriers,
     operatingCarriers = operatingCarriers,
     directionality = directionality,
-    //flightNumbers = flightNumbers.map { it.map() },
-    legLocalId = legLocalId,
-    flightLocalId = flightId
+    flightNumber = flightNumbers.map { it.map() }
 )
 
 fun Entity.FlightNumber.map() = FlightData.FlightNumber(
     flightNumber = flightNumber,
-    carrierId = carrierId,
-    flightNumberLocalId = flightNumberLocalId,
-    legLocalId = legId
+    carrierId = carrierId
 )
 
 fun Entity.Segment.map() = FlightData.Segment(
@@ -106,9 +102,7 @@ fun Entity.Segment.map() = FlightData.Segment(
     duration = duration,
     flightNumber = flightNumber,
     journeyMode = journeyMode,
-    directionality = directionality,
-    segmentLocalId = segmentLocalId,
-    flightLocalId = flightId
+    directionality = directionality
 )
 
 fun Entity.Carrier.map() = FlightData.Carrier(
@@ -116,9 +110,7 @@ fun Entity.Carrier.map() = FlightData.Carrier(
     code = code,
     name = name,
     imageUrl = imageUrl,
-    displayCode = displayCode,
-    carrierLocalId = carrierLocalId,
-    flightLocalId = flightId
+    displayCode = displayCode
 )
 
 fun Entity.Agent.map() = FlightData.Agent(
@@ -128,9 +120,7 @@ fun Entity.Agent.map() = FlightData.Agent(
     status = status,
     optimisedForMobile = optimisedForMobile,
     bookingNumber = bookingNumber,
-    type = type,
-    agentLocalId = agentLocalId,
-    flightLocalId = flightId
+    type = type
 )
 
 fun Entity.Place.map() = FlightData.Place(
@@ -138,9 +128,7 @@ fun Entity.Place.map() = FlightData.Place(
     parentId = parentId,
     code = code,
     type = type,
-    name = name,
-    placeLocalId = placeLocalId,
-    flightLocalId = flightId
+    name = name
 )
 
 fun Entity.Currency.map() = FlightData.Currency(
@@ -151,7 +139,5 @@ fun Entity.Currency.map() = FlightData.Currency(
     symbolOnLeft = symbolOnLeft,
     spaceBetweenAmountAndSymbol = spaceBetweenAmountAndSymbol,
     roundingCoefficient = roundingCoefficient,
-    decimalDigits = decimalDigits,
-    currencyLocalId = currencyLocalId,
-    flightLocalId = flightId
+    decimalDigits = decimalDigits
 )

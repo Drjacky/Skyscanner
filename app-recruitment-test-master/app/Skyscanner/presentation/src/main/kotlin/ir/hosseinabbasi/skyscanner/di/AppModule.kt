@@ -12,6 +12,9 @@ import javax.inject.Singleton
 /**
  * Created by Dr.jacky on 11/4/2018.
  */
+/**
+ * Application module
+ */
 @Module(includes = [NetModule::class, DbModule::class])
 abstract class AppModule {
 

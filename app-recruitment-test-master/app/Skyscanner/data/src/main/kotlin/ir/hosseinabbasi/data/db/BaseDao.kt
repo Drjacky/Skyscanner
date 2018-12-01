@@ -1,6 +1,9 @@
 package ir.hosseinabbasi.data.db
 
-import androidx.room.*
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Update
 import io.reactivex.Flowable
 import io.reactivex.Single
 
@@ -14,8 +17,7 @@ interface BaseDao<T> {
 
     fun select(id: Long): Flowable<T>
 
-    /*fun selectAll(): Flowable<List<T>>*/
-    fun selectAll(): Flowable<T>
+    fun selectAll(): Flowable<List<T>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(t: T): Long

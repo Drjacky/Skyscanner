@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
+import ir.hosseinabbasi.skyscanner.di.DaggerAppComponent
 
 /**
  * Created by Dr.jacky on 10/31/2018.

@@ -19,7 +19,7 @@ sealed class ResultState<T> {
     data class Success<T>(val data: T) : ResultState<T>()
 
     /**
-     * A state to show a [throwable] is thrown beside the [lastData] which is cached.
+     * A state to show a [throwable] is thrown beside the [data] which is cached.
      */
-    data class Error<T>(val throwable: Throwable, val lastData: T?) : ResultState<T>()
+    data class Error<T>(val throwable: Throwable, val data: T?) : ResultState<T>()
 }

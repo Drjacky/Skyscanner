@@ -18,6 +18,7 @@ dependencies {
     // reactive
     implementation domainDependencies.rxAndroid
     implementation domainDependencies.rxJava
+    implementation domainDependencies.retrofitRxJava2Adapter
     // android architecture component
     implementation domainDependencies.pagingRuntime
     implementation domainDependencies.pagingRxJava

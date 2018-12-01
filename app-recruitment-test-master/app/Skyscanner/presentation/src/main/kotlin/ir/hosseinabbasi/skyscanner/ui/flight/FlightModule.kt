@@ -6,16 +6,30 @@ import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
+import ir.hosseinabbasi.data.api.FlightApi
+import ir.hosseinabbasi.data.datasource.flight.FlightApiDataSource
+import ir.hosseinabbasi.data.datasource.flight.FlightApiDataSourceImpl
+import ir.hosseinabbasi.data.datasource.flight.FlightDatabaseDataSource
+import ir.hosseinabbasi.data.datasource.flight.FlightDatabaseDataSourceImpl
 import ir.hosseinabbasi.data.db.flight.FlightDao
+import ir.hosseinabbasi.data.repository.flight.FlightRepositoryImpl
+import ir.hosseinabbasi.domain.repository.flight.FlightRepository
+import ir.hosseinabbasi.domain.usecase.flight.GetFlightsUseCase
+import ir.hosseinabbasi.domain.usecase.flight.GetFlightsUseCaseImpl
+import ir.hosseinabbasi.skyscanner.common.transformer.AsyncFTransformer
+import ir.hosseinabbasi.skyscanner.common.transformer.AsyncOTransformer
+import ir.hosseinabbasi.skyscanner.di.scope.ViewModelKey
 
 /**
  * Created by Dr.jacky on 10/31/2018.
  */
-@Module(includes = [
-    /*FlightModule.FlightVM::class*/])
+@Module(
+    includes = [
+        FlightModule.FlightVM::class]
+)
 abstract class FlightModule {
 
-    /*@ContributesAndroidInjector
+    @ContributesAndroidInjector
     abstract fun flightFragment(): FlightFragment
 
     @Module
@@ -23,31 +37,33 @@ abstract class FlightModule {
 
         @JvmStatic
         @Provides
-        fun provideDatabaseSource(flightDao: FlightDao): AlbumsDatabaseDataSource = AlbumsDatabaseDataSourceImpl(albumDao)
+        fun provideDatabaseSource(flightDao: FlightDao): FlightDatabaseDataSource =
+            FlightDatabaseDataSourceImpl(flightDao)
 
         @JvmStatic
         @Provides
-        fun provideApiSource(api: AlbumApi): AlbumsApiDataSource = AlbumsApiDataSourceImpl(api)
+        fun provideApiSource(api: FlightApi): FlightApiDataSource = FlightApiDataSourceImpl(api)
 
         @JvmStatic
         @Provides
         fun provideRepository(
-            apiSource: AlbumsApiDataSource,
-            databaseSource: AlbumsDatabaseDataSource
-        ): AlbumsRepository {
-            return AlbumsRepositoryImpl(apiSource, databaseSource)
+            apiSource: FlightApiDataSource,
+            databaseSource: FlightDatabaseDataSource
+        ): FlightRepository {
+            return FlightRepositoryImpl(apiSource, databaseSource)
         }
 
         @JvmStatic
         @Provides
-        fun provideGetAlbumsUseCaseImpl(repository: AlbumsRepository): GetAlbumsUseCase = GetAlbumsUseCaseImpl(AsyncFTransformer(), AsyncSTransformer(), AsyncSTransformer(), repository)
+        fun provideGetFlightsUseCaseImpl(repository: FlightRepository): GetFlightsUseCase =
+            GetFlightsUseCaseImpl(AsyncFTransformer(), AsyncOTransformer(), repository)
     }
 
     @Module
     abstract class FlightVM {
         @Binds
         @IntoMap
-        @ViewModelKey(HomeViewModel::class)
-        internal abstract fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
-    }*/
+        @ViewModelKey(FlightViewModel::class)
+        internal abstract fun bindFlightViewModel(viewModel: FlightViewModel): ViewModel
+    }
 }
